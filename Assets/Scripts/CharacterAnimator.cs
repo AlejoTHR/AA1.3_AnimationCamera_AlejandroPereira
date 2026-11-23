@@ -39,7 +39,31 @@ public class CharacterAnimator : MonoBehaviour
         FixLookat();
 
         gunPivot.LookAt(lookat);
+
+        
+
     }
+
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+
+        anim.SetLookAtPosition(lookat);
+        anim.SetLookAtWeight(1, 0.5f, 1);
+
+
+        anim.SetIKPosition(AvatarIKGoal.RightHand, gunRightHand.position);
+        anim.SetIKRotation(AvatarIKGoal.RightHand, gunRightHand.rotation);
+        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+
+        anim.SetIKPosition(AvatarIKGoal.LeftHand, gunLeftHand.position);
+        anim.SetIKRotation(AvatarIKGoal.LeftHand, gunLeftHand.rotation);
+        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+    }
+
+
 
     private void FixLookat()
     {

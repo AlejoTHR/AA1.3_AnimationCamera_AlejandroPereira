@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,9 @@ public class CharacterMover : MonoBehaviour
     Quaternion velocityRotation;
     Vector3 lastPos;
     Quaternion lastRot;
+
+
+    public Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +51,7 @@ public class CharacterMover : MonoBehaviour
 
         lastPos = transform.position;
         lastRot = transform.rotation;
+
     }
     void Velocity()
     {
@@ -71,6 +76,7 @@ public class CharacterMover : MonoBehaviour
             Vector3 mov = input.Player.Move.ReadValue<Vector2>();
             mov.z = mov.y;
             mov.y = 0;
+
             float magnitude = Mathf.Clamp01(mov.magnitude);
             if (magnitude > 0)
             {
@@ -81,6 +87,8 @@ public class CharacterMover : MonoBehaviour
                 mov = mov.normalized * magnitude;
             }
 
+
+
             Debug.DrawRay(transform.position, mov, Color.yellow);
             if (magnitude > currentMov.magnitude)
             {
@@ -90,6 +98,7 @@ public class CharacterMover : MonoBehaviour
             {
                 currentMov = Vector3.Lerp(currentMov, mov, movementDeceleration * Time.fixedDeltaTime);
             }
+
 
             Debug.DrawRay(transform.position, currentMov, Color.green);
             Quaternion rot = currentMov.magnitude > 0.01f ? Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(currentMov), speedTurn * Time.fixedDeltaTime) : transform.rotation;

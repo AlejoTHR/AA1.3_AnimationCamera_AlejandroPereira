@@ -23,16 +23,25 @@ public class GenericGun : MonoBehaviour
     public Vector3 knockbackRotation;
     Vector3 originalPosition;
     Quaternion originalRotation;
+
+    InputSystem_Actions input;
+
+
     private void Start()
     {
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
+
+        input = new InputSystem_Actions();
+        input.Enable();
     }
 
     void Update()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, positionRecover * Time.deltaTime);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, rotationRecover * Time.deltaTime);
+
+
     }
     public void Fire()
     {
