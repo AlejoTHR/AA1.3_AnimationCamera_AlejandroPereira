@@ -24,14 +24,18 @@ public class GenericGun : MonoBehaviour
     Vector3 originalPosition;
     Quaternion originalRotation;
 
+
+    // ADDED //
     InputSystem_Actions input;
+    public float TimerShoot;
+    public float TimerReload;
 
 
     private void Start()
     {
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
-
+        // INPUT
         input = new InputSystem_Actions();
         input.Enable();
     }
@@ -42,12 +46,64 @@ public class GenericGun : MonoBehaviour
         transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, rotationRecover * Time.deltaTime);
 
 
+
+        // IS AUTOMATIC
+        if (!automatic)
+        {
+            // SHOOT ONE BY ONE
+            if (input.Player.Shoot.WasPerformedThisFrame())
+            {
+                Fire();
+            }
+        }
+
+        // IS NOT AUTOMATIC
+        else
+        {
+            if (input.Player.Shoot.IsPressed())
+            {
+                // WHILE IS PRESSED, ADD TO TIMER
+                TimerShoot += Time.deltaTime;
+
+                // IF TIMER MEETS FIRE RATE, SHOOT AND RESET TIMER
+                if (TimerShoot >= fireRate)
+                {
+                    Fire();
+                    TimerShoot = 0;
+                }
+            }
+            // IF IS RELEASED, RESET TIMER
+            else if (input.Player.Shoot.WasCompletedThisFrame()) 
+            {
+                TimerShoot = 0;
+            }
+        }
+
+        // IF NO AMMO LEFT
+        if(clipCurrent == 0)
+        {
+            // RELOAD TIME
+            TimerReload += Time.deltaTime;
+            // WHEN RELOAD TIME IS DONE
+            if(TimerReload >= reloadTime)
+            {
+                clipCurrent = clipMax; // REFILL CLIP
+                TimerReload = 0; // RESET TIMER
+            }
+
+        }
+
     }
     public void Fire()
     {
-        Destroy(Instantiate(bullet, firePoint.position, firePoint.rotation), 10);
-        onFire.Invoke();
-        StartCoroutine(Knockback_Corutine());
+        // NEEDS AMMO TO SHOOT
+        if(clipCurrent > 0)
+        {
+            clipCurrent--;
+            Destroy(Instantiate(bullet, firePoint.position, firePoint.rotation), 10);
+            StartCoroutine(Knockback_Corutine());
+        }
+
     }
     IEnumerator Knockback_Corutine()
     {

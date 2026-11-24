@@ -14,10 +14,17 @@ public class Projectile : MonoBehaviour
     public Rigidbody rb;
 
     Vector3 lastPos;
+
+
+
+    // ADDED //
+    public GameObject BulletHole;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         rb.AddRelativeForce(new Vector3(Random.Range(forceMin.x, forceMax.x), Random.Range(forceMin.y, forceMax.y), Random.Range(forceMin.z, forceMax.z)));
+        
         Destroy(gameObject, disappearTime);
         lastPos = transform.position;
         transform.parent = null;
@@ -30,7 +37,6 @@ public class Projectile : MonoBehaviour
         Debug.DrawRay(lastPos, dir, Color.blue, disappearTime);
 
         RaycastHit hit;
-
         if (Physics.SphereCast(lastPos, radius, dir, out hit, dir.magnitude, layers))
         {
             Hitted(hit);
@@ -41,10 +47,24 @@ public class Projectile : MonoBehaviour
 
     void Hitted(RaycastHit hit)
     {
-        if (hit.rigidbody)
+        if (hit.collider)
         {
-            hit.rigidbody.AddForceAtPosition(rb.linearVelocity * rb.mass * collisionForceMultiplier, this.transform.position);
+            // CHECKING IF HAS RIGIDBODY
+            hit.rigidbody?.AddForceAtPosition(rb.linearVelocity * rb.mass * collisionForceMultiplier, this.transform.position);
+
+            // HOLES //
+            // CHECK IN CLASS
+            GameObject newHole = Instantiate(BulletHole, hit.point, hit.collider.transform.rotation, hit.collider.gameObject.transform);
+            // HOLE FACES IMPACTED OBJECT'S NORMAL
+            transform.right = hit.normal;
+
+
         }
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

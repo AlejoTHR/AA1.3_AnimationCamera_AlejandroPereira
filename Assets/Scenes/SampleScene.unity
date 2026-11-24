@@ -9150,6 +9150,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9324,6 +9325,21 @@ MonoBehaviour:
   lookAtMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c684167c7305fe44a89db51d0779d7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectFollower
+  follow: {fileID: 2120384275}
+  offset: {x: 1, y: 0, z: -2}
+  followSpeed: 10
 --- !u!1 &1050062902
 GameObject:
   m_ObjectHideFlags: 0
@@ -10071,6 +10087,7 @@ MonoBehaviour:
   speedTurn: 10
   jumpForce: 5
   airSpeedFollowup: 1
+  speedBoost: 1.5
   _animator: {fileID: 1625014150}
 --- !u!1 &1095641267
 GameObject:
@@ -16997,25 +17014,14 @@ MonoBehaviour:
   reloadTime: 0.5
   onFire:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1780671017}
-        m_TargetAssemblyTypeName: GenericGun, Assembly-CSharp
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   firePoint: {fileID: 545399007}
   bullet: {fileID: 3810806582412894877, guid: 257a5f3f12dfce4478c4a8f4b960e1d2, type: 3}
   positionRecover: 15
   rotationRecover: 20
   knockbackPosition: {x: 0.01, y: 0.1, z: -0.2}
   knockbackRotation: {x: 35, y: 5, z: 5}
+  TimerShoot: 0
 --- !u!54 &1780671018
 Rigidbody:
   m_ObjectHideFlags: 0

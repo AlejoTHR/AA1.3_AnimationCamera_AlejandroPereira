@@ -47,16 +47,19 @@ public class CharacterAnimator : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-
+        // IK POSITIONS AND ROTATIONS
+        
+        // HEAD
         anim.SetLookAtPosition(lookat);
         anim.SetLookAtWeight(1, 0.5f, 1);
 
-
+        // RIGHT HAND
         anim.SetIKPosition(AvatarIKGoal.RightHand, gunRightHand.position);
         anim.SetIKRotation(AvatarIKGoal.RightHand, gunRightHand.rotation);
         anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
         anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
 
+        // LEFT HAND
         anim.SetIKPosition(AvatarIKGoal.LeftHand, gunLeftHand.position);
         anim.SetIKRotation(AvatarIKGoal.LeftHand, gunLeftHand.rotation);
         anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);

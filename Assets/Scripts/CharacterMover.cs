@@ -27,6 +27,10 @@ public class CharacterMover : MonoBehaviour
     Quaternion lastRot;
 
 
+    //EDITED
+    public float speedBoost;
+
+
     public Animator _animator;
     // Start is called before the first frame update
     void Start()
@@ -102,9 +106,18 @@ public class CharacterMover : MonoBehaviour
 
             Debug.DrawRay(transform.position, currentMov, Color.green);
             Quaternion rot = currentMov.magnitude > 0.01f ? Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(currentMov), speedTurn * Time.fixedDeltaTime) : transform.rotation;
+
+
+            // RUNNING //
+            if (input.Player.Sprint.IsPressed())
+            {
+                rb.Move(rb.position + currentMov * speedMovement * speedBoost * Time.fixedDeltaTime, rot);
+            }
+
             rb.Move(rb.position + currentMov * speedMovement * Time.fixedDeltaTime, rot);
         }
     }
+
     void DroppedOff()
     {
         if (airSpeedFollowupCurrent > 0)
