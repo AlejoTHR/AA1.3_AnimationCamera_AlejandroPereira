@@ -54,8 +54,7 @@ public class CharacterMover : MonoBehaviour
         Movement();
 
         lastPos = transform.position;
-       
-        //lastRot = transform.rotation;
+        lastRot = transform.rotation;
 
     }
     void Velocity()

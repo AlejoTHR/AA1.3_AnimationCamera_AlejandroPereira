@@ -15,8 +15,6 @@ public class Projectile : MonoBehaviour
 
     Vector3 lastPos;
 
-
-
     // ADDED //
     public GameObject BulletHole;
     void Start()
@@ -57,8 +55,6 @@ public class Projectile : MonoBehaviour
             GameObject newHole = Instantiate(BulletHole, hit.point, hit.collider.transform.rotation, hit.collider.gameObject.transform);
             // HOLE FACES IMPACTED OBJECT'S NORMAL
             transform.right = hit.normal;
-
-
         }
         Destroy(gameObject);
     }

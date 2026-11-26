@@ -9151,7 +9151,6 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
   - component: {fileID: 963194232}
-  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9341,25 +9340,6 @@ MonoBehaviour:
   follow: {fileID: 2120384275}
   offset: {x: 1, y: 0, z: -2}
   followSpeed: 10
---- !u!114 &963194233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ce8f9b89f699b42ba39dfaffd3d85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  MousePosY: 0
-  MousePosX: 0
-  SensitivityY: 1
-  SensitivityX: 0
-  MinAngleY: -45
-  MaxAngleY: 45
-  _player: {fileID: 1089316523}
 --- !u!1 &1050062902
 GameObject:
   m_ObjectHideFlags: 0
@@ -10055,7 +10035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089316523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19983,6 +19963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120384275}
+  - component: {fileID: 2120384276}
   m_Layer: 3
   m_Name: CameraFollow
   m_TagString: Untagged
@@ -20005,6 +19986,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1089316526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2120384276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120384274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ce8f9b89f699b42ba39dfaffd3d85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  _camera: {fileID: 963194227}
+  CameraDistance: 0
+  CameraFollowSpeed: 0
+  LayersDetect:
+    serializedVersion: 2
+    m_Bits: 0
+  CameraOffset: {x: 1, y: 0, z: 0}
+  MousePosY: 0
+  MousePosX: 0
+  SensitivityY: 0
+  SensitivityX: 0
+  MinAngleY: 0
+  MaxAngleY: 0
 --- !u!1 &2120774273
 GameObject:
   m_ObjectHideFlags: 0
