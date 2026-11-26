@@ -9151,6 +9151,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
   - component: {fileID: 963194232}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9340,6 +9341,25 @@ MonoBehaviour:
   follow: {fileID: 2120384275}
   offset: {x: 1, y: 0, z: -2}
   followSpeed: 10
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ce8f9b89f699b42ba39dfaffd3d85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  MousePosY: 0
+  MousePosX: 0
+  SensitivityY: 1
+  SensitivityX: 0
+  MinAngleY: -45
+  MaxAngleY: 45
+  _player: {fileID: 1089316523}
 --- !u!1 &1050062902
 GameObject:
   m_ObjectHideFlags: 0
@@ -10087,8 +10107,8 @@ MonoBehaviour:
   speedTurn: 10
   jumpForce: 5
   airSpeedFollowup: 1
-  speedBoost: 1.5
   _animator: {fileID: 1625014150}
+  speedBoost: 1.5
 --- !u!1 &1095641267
 GameObject:
   m_ObjectHideFlags: 0
@@ -17022,6 +17042,7 @@ MonoBehaviour:
   knockbackPosition: {x: 0.01, y: 0.1, z: -0.2}
   knockbackRotation: {x: 35, y: 5, z: 5}
   TimerShoot: 0
+  TimerReload: 0
 --- !u!54 &1780671018
 Rigidbody:
   m_ObjectHideFlags: 0

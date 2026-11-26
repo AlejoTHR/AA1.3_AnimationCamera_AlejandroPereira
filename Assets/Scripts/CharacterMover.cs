@@ -25,13 +25,13 @@ public class CharacterMover : MonoBehaviour
     Quaternion velocityRotation;
     Vector3 lastPos;
     Quaternion lastRot;
+    public Animator _animator;
 
 
     //EDITED
     public float speedBoost;
 
 
-    public Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +54,8 @@ public class CharacterMover : MonoBehaviour
         Movement();
 
         lastPos = transform.position;
-        lastRot = transform.rotation;
+       
+        //lastRot = transform.rotation;
 
     }
     void Velocity()
