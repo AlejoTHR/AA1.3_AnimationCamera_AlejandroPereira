@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RaycastLookAt : MonoBehaviour
 {
     public float maxDistance = 1000;
     public LayerMask lookAtMask;
     public Vector3 lookingAt { get; private set; }
+
 
     void FixedUpdate()
     {
@@ -20,6 +22,7 @@ public class RaycastLookAt : MonoBehaviour
             lookingAt = transform.position + transform.forward * maxDistance;
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {
